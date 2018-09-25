@@ -1,0 +1,4 @@
+mkdir -p tests/fonts
+cp debugfonts/MunhwaGothic-Bold tests/fonts
+cp debugfonts/NotoSans-Regular.ttc tests/fonts
+./bootstrap
