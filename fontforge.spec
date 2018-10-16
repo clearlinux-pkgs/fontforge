@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20170731
-Release  : 1
+Release  : 2
 URL      : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
@@ -12,15 +12,15 @@ Source2  : https://github.com/fontforge/debugfonts/archive/86de477.tar.gz
 Source3  : https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz
 Summary  : A PostScript font editor
 Group    : Development/Tools
-License  : BSD-2-Clause BSD-3-Clause FSFULLR GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
-Requires: fontforge-bin
-Requires: fontforge-python3
-Requires: fontforge-lib
-Requires: fontforge-license
-Requires: fontforge-data
-Requires: fontforge-locales
-Requires: fontforge-man
-Requires: fontforge-python
+License  : <html><head><title>License GPL-3.0 Server</a></body></html> Server</title></head><body><a href="license/">License
+Requires: fontforge-bin = %{version}-%{release}
+Requires: fontforge-data = %{version}-%{release}
+Requires: fontforge-lib = %{version}-%{release}
+Requires: fontforge-license = %{version}-%{release}
+Requires: fontforge-locales = %{version}-%{release}
+Requires: fontforge-man = %{version}-%{release}
+Requires: fontforge-python = %{version}-%{release}
+Requires: fontforge-python3 = %{version}-%{release}
 Requires: Pillow
 BuildRequires : Pillow
 BuildRequires : buildreq-configure
@@ -42,6 +42,7 @@ BuildRequires : pkgconfig(sm)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python3-dev
 BuildRequires : sed
+Patch1: CVE-2017-17521.nopatch
 
 %description
 FontForge allows you to edit outline and bitmap fonts.  You can create
@@ -167,28 +168,33 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537891066
+export SOURCE_DATE_EPOCH=1539718032
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1537891066
+export SOURCE_DATE_EPOCH=1539718032
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/fontforge
-cp COPYING.gplv3 %{buildroot}/usr/share/doc/fontforge/COPYING.gplv3
-cp LICENSE %{buildroot}/usr/share/doc/fontforge/LICENSE
-cp Packaging/debian/cp-src/copyright %{buildroot}/usr/share/doc/fontforge/Packaging_debian_cp-src_copyright
-cp doc/html/ja/license.html %{buildroot}/usr/share/doc/fontforge/doc_html_ja_license.html
-cp doc/html/license.html %{buildroot}/usr/share/doc/fontforge/doc_html_license.html
-cp gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/doc/fontforge/gnulib_doc_COPYING.LESSERv2
-cp gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/doc/fontforge/gnulib_doc_COPYING.LESSERv3
-cp gnulib/doc/COPYINGv2 %{buildroot}/usr/share/doc/fontforge/gnulib_doc_COPYINGv2
-cp gnulib/doc/COPYINGv3 %{buildroot}/usr/share/doc/fontforge/gnulib_doc_COPYINGv3
-cp gnulib/modules/COPYING %{buildroot}/usr/share/doc/fontforge/gnulib_modules_COPYING
-cp osx/FontForge.app/Contents/MacOS/CocoaDialog.app/Contents/Resources/COPYING %{buildroot}/usr/share/doc/fontforge/osx_FontForge.app_Contents_MacOS_CocoaDialog.app_Contents_Resources_COPYING
-cp osx/mac-Resources/License.rtf %{buildroot}/usr/share/doc/fontforge/osx_mac-Resources_License.rtf
-cp uthash/LICENSE %{buildroot}/usr/share/doc/fontforge/uthash_LICENSE
-cp uthash/doc/license.html %{buildroot}/usr/share/doc/fontforge/uthash_doc_license.html
+mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
+cp COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/COPYING.gplv3
+cp LICENSE %{buildroot}/usr/share/package-licenses/fontforge/LICENSE
+cp Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/Packaging_debian_cp-src_copyright
+cp doc/html/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_ja_license.html
+cp doc/html/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_license.html
+cp gnulib/COPYING %{buildroot}/usr/share/package-licenses/fontforge/gnulib_COPYING
+cp gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
+cp gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
+cp gnulib/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
+cp gnulib/doc/COPYINGv3 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv3
+cp gnulib/modules/COPYING %{buildroot}/usr/share/package-licenses/fontforge/gnulib_modules_COPYING
+cp osx/FontForge.app/Contents/MacOS/CocoaDialog.app/Contents/Resources/COPYING %{buildroot}/usr/share/package-licenses/fontforge/osx_FontForge.app_Contents_MacOS_CocoaDialog.app_Contents_Resources_COPYING
+cp osx/mac-Resources/License.rtf %{buildroot}/usr/share/package-licenses/fontforge/osx_mac-Resources_License.rtf
+cp uthash/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/uthash_LICENSE
+cp uthash/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/uthash_doc_license.html
 %make_install
 %find_lang FontForge
 
@@ -594,6 +600,8 @@ cp uthash/doc/license.html %{buildroot}/usr/share/doc/fontforge/uthash_doc_licen
 /usr/share/fontforge/python/simple/load-font-and-show-name.py
 /usr/share/fontforge/python/test.sfd
 /usr/share/fontforge/python/webcollab.py
+/usr/share/package-licenses/fontforge/Packaging_debian_cp-src_copyright
+/usr/share/package-licenses/fontforge/osx_mac-Resources_License.rtf
 
 %files dev
 %defattr(-,root,root,-)
@@ -696,23 +704,23 @@ cp uthash/doc/license.html %{buildroot}/usr/share/doc/fontforge/uthash_doc_licen
 /usr/lib64/libgutils.so.2.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/fontforge/COPYING.gplv3
-/usr/share/doc/fontforge/LICENSE
-/usr/share/doc/fontforge/doc_html_ja_license.html
-/usr/share/doc/fontforge/doc_html_license.html
-/usr/share/doc/fontforge/gnulib_doc_COPYING.LESSERv2
-/usr/share/doc/fontforge/gnulib_doc_COPYING.LESSERv3
-/usr/share/doc/fontforge/gnulib_doc_COPYINGv2
-/usr/share/doc/fontforge/gnulib_doc_COPYINGv3
-/usr/share/doc/fontforge/gnulib_modules_COPYING
-/usr/share/doc/fontforge/license.html
-/usr/share/doc/fontforge/osx_FontForge.app_Contents_MacOS_CocoaDialog.app_Contents_Resources_COPYING
-/usr/share/doc/fontforge/uthash_LICENSE
-/usr/share/doc/fontforge/uthash_doc_license.html
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/fontforge/COPYING.gplv3
+/usr/share/package-licenses/fontforge/LICENSE
+/usr/share/package-licenses/fontforge/doc_html_ja_license.html
+/usr/share/package-licenses/fontforge/doc_html_license.html
+/usr/share/package-licenses/fontforge/gnulib_COPYING
+/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
+/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
+/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
+/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv3
+/usr/share/package-licenses/fontforge/gnulib_modules_COPYING
+/usr/share/package-licenses/fontforge/osx_FontForge.app_Contents_MacOS_CocoaDialog.app_Contents_Resources_COPYING
+/usr/share/package-licenses/fontforge/uthash_LICENSE
+/usr/share/package-licenses/fontforge/uthash_doc_license.html
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/fontforge.1
 /usr/share/man/man1/fontimage.1
 /usr/share/man/man1/fontlint.1
