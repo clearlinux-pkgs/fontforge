@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20170731
-Release  : 2
+Release  : 3
 URL      : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
@@ -12,7 +12,7 @@ Source2  : https://github.com/fontforge/debugfonts/archive/86de477.tar.gz
 Source3  : https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz
 Summary  : A PostScript font editor
 Group    : Development/Tools
-License  : <html><head><title>License GPL-3.0 Server</a></body></html> Server</title></head><body><a href="license/">License
+License  : BSD-2-Clause BSD-3-Clause FSFULLR GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: fontforge-bin = %{version}-%{release}
 Requires: fontforge-data = %{version}-%{release}
 Requires: fontforge-lib = %{version}-%{release}
@@ -168,7 +168,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539718032
+export SOURCE_DATE_EPOCH=1539719073
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -177,7 +177,7 @@ export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=use
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1539718032
+export SOURCE_DATE_EPOCH=1539719073
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/COPYING.gplv3
@@ -185,7 +185,6 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/fontforge/LICENSE
 cp Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/Packaging_debian_cp-src_copyright
 cp doc/html/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_ja_license.html
 cp doc/html/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_license.html
-cp gnulib/COPYING %{buildroot}/usr/share/package-licenses/fontforge/gnulib_COPYING
 cp gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
 cp gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
 cp gnulib/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
@@ -709,7 +708,6 @@ cp uthash/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/uth
 /usr/share/package-licenses/fontforge/LICENSE
 /usr/share/package-licenses/fontforge/doc_html_ja_license.html
 /usr/share/package-licenses/fontforge/doc_html_license.html
-/usr/share/package-licenses/fontforge/gnulib_COPYING
 /usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
 /usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
 /usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
