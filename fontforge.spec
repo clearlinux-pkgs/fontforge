@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20170731
-Release  : 3
+Release  : 4
 URL      : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20170731.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
