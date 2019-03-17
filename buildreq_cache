@@ -1,5 +1,7 @@
-20170731
+20190317
+ipython
 libjpeg-turbo-dev
 pkgconfig(ice)
 pkgconfig(sm)
 python3-dev
+tiff-dev

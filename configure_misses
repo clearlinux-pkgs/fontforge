@@ -4,14 +4,10 @@ Configure miss: sys/dl.h
 Configure miss: dld.h
 Configure miss: mach-o/dyld.h
 Configure miss: potrace
-Configure miss: library containing XOpenDevice
 Configure miss: library containing DGifOpenFileName
 Configure miss: library containing EGifGetGifVersion
 Configure miss: Build with GIFLIB or LIBUNGIF support?
-Configure miss: tiffio.h usability
-Configure miss: tiffio.h presence
-Configure miss: tiffio.h
-Configure miss: Build with TIFF support?
+Configure miss: library containing TIFFRewriteField
 Configure miss: spiroentrypoints.h usability
 Configure miss: spiroentrypoints.h presence
 Configure miss: spiroentrypoints.h
