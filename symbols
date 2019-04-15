@@ -487,8 +487,6 @@ libfontforge.so.3:LoadMapFromFile
 libfontforge.so.3:LoadNamelist
 libfontforge.so.3:LoadNamelistDir
 libfontforge.so.3:LoadPfaEditEncodings
-libfontforge.so.3:LoadPlugin
-libfontforge.so.3:LoadPluginDir
 libfontforge.so.3:LoadSplineFont
 libfontforge.so.3:LookupHasDefault
 libfontforge.so.3:LookupInit
@@ -1144,6 +1142,7 @@ libfontforge.so.3:SplinesIntersect
 libfontforge.so.3:SplinesRemoveBetween
 libfontforge.so.3:StdFeaturesOfScript
 libfontforge.so.3:StdGlyphName
+libfontforge.so.3:StdGlyphNameBoundsCheck
 libfontforge.so.3:StemInfoAnyOverlaps
 libfontforge.so.3:StemInfoCopy
 libfontforge.so.3:StemInfoFree
@@ -1173,8 +1172,6 @@ libfontforge.so.3:TryAddRawGroupKern
 libfontforge.so.3:TtfTablesFree
 libfontforge.so.3:UFONameKerningClasses
 libfontforge.so.3:UHintCopy
-libfontforge.so.3:URLFromFile
-libfontforge.so.3:URLToTempFile
 libfontforge.so.3:Unarchive
 libfontforge.so.3:UnblendedCompare
 libfontforge.so.3:UndoToString
@@ -1336,7 +1333,6 @@ libfontforge.so.3:hasFreeTypeDebugger
 libfontforge.so.3:hascomposing
 libfontforge.so.3:haslrbounds
 libfontforge.so.3:hasspiro
-libfontforge.so.3:init_plugins
 libfontforge.so.3:instr_typify
 libfontforge.so.3:instrcheck
 libfontforge.so.3:interp_from_encoding
@@ -1344,7 +1340,6 @@ libfontforge.so.3:is_DOS_drive
 libfontforge.so.3:isaccent
 libfontforge.so.3:kernclass_for_groups_plist
 libfontforge.so.3:libspiro_version
-libfontforge.so.3:load_plugin
 libfontforge.so.3:mactime
 libfontforge.so.3:makePatName
 libfontforge.so.3:memlong
@@ -1366,7 +1361,6 @@ libfontforge.so.3:paddedVersionStr
 libfontforge.so.3:path_search
 libfontforge.so.3:pfed_dump
 libfontforge.so.3:pfed_read
-libfontforge.so.3:plugins_are_initialized
 libfontforge.so.3:polyMatch
 libfontforge.so.3:prepend_string_list
 libfontforge.so.3:printf_fetchargs
@@ -2750,10 +2744,6 @@ libgdraw.so.6:xsum3
 libgdraw.so.6:xsum4
 libgdraw.so.6:xvasprintf
 libgdraw.so.6:xzalloc
-libgioftp.so.2:GIO_cancel
-libgioftp.so.2:GIO_dispatch
-libgioftp.so.2:GIO_init
-libgioftp.so.2:GIO_term
 libgunicode.so.5:AllAscii
 libgunicode.so.5:FractionCount
 libgunicode.so.5:FractionU_alt_getC
@@ -2944,10 +2934,6 @@ libgutils.so.3:GFileWriteAll
 libgutils.so.3:GIOCreate
 libgutils.so.3:GIOFreeDirEntries
 libgutils.so.3:GIOGetMimeType
-libgutils.so.3:GIOSetDefAuthorizer
-libgutils.so.3:GIOSetUserAgent
-libgutils.so.3:GIO_PasswordCache
-libgutils.so.3:GIO_SetThreadCallback
 libgutils.so.3:GIOcancel
 libgutils.so.3:GIOclose
 libgutils.so.3:GIOdelDir
@@ -2999,12 +2985,9 @@ libgutils.so.3:GetTime
 libgutils.so.3:HostPortPack
 libgutils.so.3:HostPortUnpack
 libgutils.so.3:_GFile_find_program_dir
-libgutils.so.3:_GIO_LookupHost
 libgutils.so.3:_GIO_PostError
 libgutils.so.3:_GIO_PostInter
 libgutils.so.3:_GIO_PostSuccess
-libgutils.so.3:_GIO_ReportHeaders
-libgutils.so.3:_GIO_RequestAuthorization
 libgutils.so.3:_GIO_decomposeURL
 libgutils.so.3:_GIO_fileDispatch
 libgutils.so.3:_GIO_localDispatch

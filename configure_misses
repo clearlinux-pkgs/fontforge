@@ -1,9 +1,3 @@
-Configure miss: dld_link in -ldld
-Configure miss: _ prefix in compiled symbols
-Configure miss: sys/dl.h
-Configure miss: dld.h
-Configure miss: mach-o/dyld.h
-Configure miss: potrace
 Configure miss: library containing DGifOpenFileName
 Configure miss: library containing EGifGetGifVersion
 Configure miss: Build with GIFLIB or LIBUNGIF support?
