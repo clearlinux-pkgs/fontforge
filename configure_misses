@@ -2,17 +2,9 @@ Configure miss: library containing DGifOpenFileName
 Configure miss: library containing EGifGetGifVersion
 Configure miss: Build with GIFLIB or LIBUNGIF support?
 Configure miss: library containing TIFFRewriteField
-Configure miss: spiroentrypoints.h usability
-Configure miss: spiroentrypoints.h presence
-Configure miss: spiroentrypoints.h
-Configure miss: Build with LibSpiro Curve Contour support?
-Configure miss: uninameslist.h usability
-Configure miss: uninameslist.h presence
-Configure miss: uninameslist.h
+Configure miss: LibSpiroVersion
 Configure miss: Build with LibUniNamesList Unicode support?
-Configure miss:  libczmq >= 2.2.0 libczmq < 4 libzmq >= 4.0.4 
 Configure miss: library containing rl_readline_version
 Configure miss: library containing rl_readline_version
 Configure miss: Build with LibReadLine support?
-Configure miss: whether tmpfile should be overridden
-Configure miss: IPython
+Configure miss: library containing libiconv_open
