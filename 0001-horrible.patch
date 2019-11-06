@@ -1,0 +1,38 @@
+From 26e6973794d2f1d73c1e9298ea87b0dc844d2a6a Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 14 Nov 2019 10:54:38 -0800
+Subject: [PATCH] horrible
+
+---
+ fontforge/Makefile.am      | 2 +-
+ m4/fontforge_arg_enable.m4 | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/fontforge/Makefile.am b/fontforge/Makefile.am
+index a40bf4d..0a5e3d2 100644
+--- a/fontforge/Makefile.am
++++ b/fontforge/Makefile.am
+@@ -159,7 +159,7 @@ libfontforge_la_CPPFLAGS = $(AM_CPPFLAGS)
+ libfontforge_la_LIBADD += splinerefigure.lo $(LIBADD)
+ 
+ libfontforge_la_LDFLAGS = $(MY_CFLAGS) -version-info $(LIBFONTFORGE_VERSION) \
+-	${MY_LIB_LDFLAGS}
++	${MY_LIB_LDFLAGS} -lpython3.8
+ 
+ if PYTHON_SCRIPTING
+ if !MACINTOSH
+diff --git a/m4/fontforge_arg_enable.m4 b/m4/fontforge_arg_enable.m4
+index 6f1177c..69592c3 100644
+--- a/m4/fontforge_arg_enable.m4
++++ b/m4/fontforge_arg_enable.m4
+@@ -148,6 +148,7 @@ if test x"${enable_python_scripting}" = xyes; then
+    if test x"${i_do_have_python_scripting}" = xyes; then
+       AC_MSG_RESULT([yes])
+       i_want_python_ver="${PYTHON_VERSION}"
++      PYTHON_LIBS="-L/usr/lib/python3.8/config-3.8-x86_64-linux-gnu -L/usr/lib -lpython3.8 -lcrypt -lpthread -ldl  -lutil -lm"
+    else
+       AC_MSG_FAILURE([ERROR: Please install the PYTHON Developer Package],[1])
+    fi
+-- 
+2.24.0
+

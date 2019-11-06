@@ -4,13 +4,13 @@
 #
 Name     : fontforge
 Version  : 20190801
-Release  : 10
+Release  : 12
 URL      : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
 Source2  : https://github.com/fontforge/debugfonts/archive/86de477.tar.gz
 Source3  : https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz
-Summary  : Outline and bitmap font editor
+Summary  : A PostScript font editor
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause FSFULLR GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: fontforge-bin = %{version}-%{release}
@@ -48,6 +48,7 @@ BuildRequires : readline-dev
 BuildRequires : sed
 BuildRequires : tiff-dev
 Patch1: CVE-2017-17521.nopatch
+Patch2: 0001-horrible.patch
 
 %description
 FontForge allows you to edit outline and bitmap fonts.  You can create
@@ -80,7 +81,6 @@ Requires: fontforge-lib = %{version}-%{release}
 Requires: fontforge-bin = %{version}-%{release}
 Requires: fontforge-data = %{version}-%{release}
 Provides: fontforge-devel = %{version}-%{release}
-Requires: fontforge = %{version}-%{release}
 Requires: fontforge = %{version}-%{release}
 
 %description dev
@@ -150,18 +150,20 @@ python3 components for the fontforge package.
 
 %prep
 %setup -q -n fontforge-20190801
-cd ..
-%setup -q -T -D -n fontforge-20190801 -b 1
-cd ..
-%setup -q -T -D -n fontforge-20190801 -b 3
-cd ..
-%setup -q -T -D -n fontforge-20190801 -b 2
+cd %{_builddir}
+tar xf %{_sourcedir}/v0.1.tar.gz
+cd %{_builddir}
+tar xf %{_sourcedir}/v2.0.2.tar.gz
+cd %{_builddir}
+tar xf %{_sourcedir}/86de477.tar.gz
+cd %{_builddir}/fontforge-20190801
 mkdir -p gnulib
-cp -r %{_topdir}/BUILD/gnulib-0.1/* %{_topdir}/BUILD/fontforge-20190801/gnulib
+cp -r %{_builddir}/gnulib-0.1/* %{_builddir}/fontforge-20190801/gnulib
 mkdir -p uthash
-cp -r %{_topdir}/BUILD/uthash-2.0.2/* %{_topdir}/BUILD/fontforge-20190801/uthash
+cp -r %{_builddir}/uthash-2.0.2/* %{_builddir}/fontforge-20190801/uthash
 mkdir -p debugfonts
-cp -r %{_topdir}/BUILD/debugfonts-86de4778c730a2a3d7c42bb588ba5132663ffd2d/* %{_topdir}/BUILD/fontforge-20190801/debugfonts
+cp -r %{_builddir}/debugfonts-86de4778c730a2a3d7c42bb588ba5132663ffd2d/* %{_builddir}/fontforge-20190801/debugfonts
+%patch2 -p1
 
 %build
 ## build_prepend content
@@ -174,32 +176,31 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570985635
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1573758946
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --without-libuninameslist
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570985635
+export SOURCE_DATE_EPOCH=1573758946
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
-cp COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/COPYING.gplv3
-cp LICENSE %{buildroot}/usr/share/package-licenses/fontforge/LICENSE
-cp Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/Packaging_debian_cp-src_copyright
-cp doc/html/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_ja_license.html
-cp doc/html/license.html %{buildroot}/usr/share/package-licenses/fontforge/doc_html_license.html
-cp gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
-cp gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
-cp gnulib/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
-cp gnulib/doc/COPYINGv3 %{buildroot}/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv3
-cp gnulib/modules/COPYING %{buildroot}/usr/share/package-licenses/fontforge/gnulib_modules_COPYING
-cp uthash/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/uthash_LICENSE
-cp uthash/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/uthash_doc_license.html
+cp %{_builddir}/fontforge-20190801/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/fontforge-20190801/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/6e478823c3f8f96ffe2c3ae91ecddb2c0261c4b6
+cp %{_builddir}/fontforge-20190801/Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/8151e44930bd15f8056e01f399892c741b143f07
+cp %{_builddir}/fontforge-20190801/doc/html/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/f84aa663c7f6b630951e7b4d0fe01507a171a6bd
+cp %{_builddir}/fontforge-20190801/doc/html/license.html %{buildroot}/usr/share/package-licenses/fontforge/37386931c93a92bb2e71973c1ec9f0efe1146d3d
+cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYINGv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/fontforge-20190801/gnulib/modules/COPYING %{buildroot}/usr/share/package-licenses/fontforge/3c00758ba4df969f204aa8ec8b3d0cd992efce40
+cp %{_builddir}/fontforge-20190801/uthash/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/08473f885bd0231790223311cc3a712faf8abded
+cp %{_builddir}/fontforge-20190801/uthash/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/b52e2b376fb126431e80512304af8b150fe5b889
 %make_install
 %find_lang FontForge
 ## Remove excluded files
@@ -691,18 +692,17 @@ rm -f %{buildroot}/usr/share/doc/fontforge/.htaccess
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/fontforge/COPYING.gplv3
-/usr/share/package-licenses/fontforge/LICENSE
-/usr/share/package-licenses/fontforge/Packaging_debian_cp-src_copyright
-/usr/share/package-licenses/fontforge/doc_html_ja_license.html
-/usr/share/package-licenses/fontforge/doc_html_license.html
-/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv2
-/usr/share/package-licenses/fontforge/gnulib_doc_COPYING.LESSERv3
-/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv2
-/usr/share/package-licenses/fontforge/gnulib_doc_COPYINGv3
-/usr/share/package-licenses/fontforge/gnulib_modules_COPYING
-/usr/share/package-licenses/fontforge/uthash_LICENSE
-/usr/share/package-licenses/fontforge/uthash_doc_license.html
+/usr/share/package-licenses/fontforge/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/fontforge/08473f885bd0231790223311cc3a712faf8abded
+/usr/share/package-licenses/fontforge/37386931c93a92bb2e71973c1ec9f0efe1146d3d
+/usr/share/package-licenses/fontforge/3c00758ba4df969f204aa8ec8b3d0cd992efce40
+/usr/share/package-licenses/fontforge/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/fontforge/6e478823c3f8f96ffe2c3ae91ecddb2c0261c4b6
+/usr/share/package-licenses/fontforge/8151e44930bd15f8056e01f399892c741b143f07
+/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+/usr/share/package-licenses/fontforge/b52e2b376fb126431e80512304af8b150fe5b889
+/usr/share/package-licenses/fontforge/f45ee1c765646813b442ca58de72e20a64a7ddba
+/usr/share/package-licenses/fontforge/f84aa663c7f6b630951e7b4d0fe01507a171a6bd
 
 %files man
 %defattr(0644,root,root,0755)
