@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20190801
-Release  : 13
+Release  : 14
 URL      : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
@@ -49,6 +49,7 @@ BuildRequires : sed
 BuildRequires : tiff-dev
 Patch1: CVE-2017-17521.nopatch
 Patch2: 0001-horrible.patch
+Patch3: CVE-2020-5395.patch
 
 %description
 FontForge allows you to edit outline and bitmap fonts.  You can create
@@ -164,6 +165,7 @@ cp -r %{_builddir}/uthash-2.0.2/* %{_builddir}/fontforge-20190801/uthash
 mkdir -p debugfonts
 cp -r %{_builddir}/debugfonts-86de4778c730a2a3d7c42bb588ba5132663ffd2d/* %{_builddir}/fontforge-20190801/debugfonts
 %patch2 -p1
+%patch3 -p1
 
 %build
 ## build_prepend content
@@ -176,7 +178,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573758946
+export SOURCE_DATE_EPOCH=1578336079
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -186,7 +188,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1573758946
+export SOURCE_DATE_EPOCH=1578336079
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp %{_builddir}/fontforge-20190801/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
