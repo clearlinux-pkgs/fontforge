@@ -2,7 +2,6 @@ Configure miss: library containing DGifOpenFileName
 Configure miss: library containing EGifGetGifVersion
 Configure miss: Build with GIFLIB or LIBUNGIF support?
 Configure miss: library containing TIFFRewriteField
-Configure miss: LibSpiroVersion
 Configure miss: Build with LibUniNamesList Unicode support?
 Configure miss: library containing rl_readline_version
 Configure miss: library containing rl_readline_version
