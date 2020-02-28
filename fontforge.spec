@@ -4,13 +4,13 @@
 #
 Name     : fontforge
 Version  : 20190801
-Release  : 16
+Release  : 17
 URL      : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
 Source2  : https://github.com/fontforge/debugfonts/archive/86de477.tar.gz
 Source3  : https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz
-Summary  : A PostScript font editor
+Summary  : Outline and bitmap font editor
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause FSFULLR GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: fontforge-bin = %{version}-%{release}
@@ -82,6 +82,7 @@ Requires: fontforge-lib = %{version}-%{release}
 Requires: fontforge-bin = %{version}-%{release}
 Requires: fontforge-data = %{version}-%{release}
 Provides: fontforge-devel = %{version}-%{release}
+Requires: fontforge = %{version}-%{release}
 Requires: fontforge = %{version}-%{release}
 
 %description dev
@@ -178,17 +179,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579636168
+export SOURCE_DATE_EPOCH=1582924732
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export FFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
 %configure --disable-static --without-libuninameslist
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1579636168
+export SOURCE_DATE_EPOCH=1582924732
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp %{_builddir}/fontforge-20190801/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -196,13 +198,13 @@ cp %{_builddir}/fontforge-20190801/LICENSE %{buildroot}/usr/share/package-licens
 cp %{_builddir}/fontforge-20190801/Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/8151e44930bd15f8056e01f399892c741b143f07
 cp %{_builddir}/fontforge-20190801/doc/html/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/f84aa663c7f6b630951e7b4d0fe01507a171a6bd
 cp %{_builddir}/fontforge-20190801/doc/html/license.html %{buildroot}/usr/share/package-licenses/fontforge/37386931c93a92bb2e71973c1ec9f0efe1146d3d
-cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/fontforge-20190801/gnulib/doc/COPYINGv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/fontforge-20190801/gnulib/modules/COPYING %{buildroot}/usr/share/package-licenses/fontforge/3c00758ba4df969f204aa8ec8b3d0cd992efce40
-cp %{_builddir}/fontforge-20190801/uthash/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/08473f885bd0231790223311cc3a712faf8abded
-cp %{_builddir}/fontforge-20190801/uthash/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/b52e2b376fb126431e80512304af8b150fe5b889
+cp %{_builddir}/gnulib-0.1/doc/COPYING.LESSERv2 %{buildroot}/usr/share/package-licenses/fontforge/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/gnulib-0.1/doc/COPYING.LESSERv3 %{buildroot}/usr/share/package-licenses/fontforge/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/gnulib-0.1/doc/COPYINGv2 %{buildroot}/usr/share/package-licenses/fontforge/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/gnulib-0.1/doc/COPYINGv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/gnulib-0.1/modules/COPYING %{buildroot}/usr/share/package-licenses/fontforge/3c00758ba4df969f204aa8ec8b3d0cd992efce40
+cp %{_builddir}/uthash-2.0.2/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/08473f885bd0231790223311cc3a712faf8abded
+cp %{_builddir}/uthash-2.0.2/doc/license.html %{buildroot}/usr/share/package-licenses/fontforge/b52e2b376fb126431e80512304af8b150fe5b889
 %make_install
 %find_lang FontForge
 ## Remove excluded files
