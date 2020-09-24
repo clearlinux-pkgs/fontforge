@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20190801
-Release  : 17
+Release  : 18
 URL      : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
