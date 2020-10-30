@@ -4,13 +4,13 @@
 #
 Name     : fontforge
 Version  : 20190801
-Release  : 18
+Release  : 19
 URL      : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20190801/fontforge-20190801.tar.gz
 Source1  : https://github.com/coreutils/gnulib/archive/v0.1.tar.gz
 Source2  : https://github.com/fontforge/debugfonts/archive/86de477.tar.gz
 Source3  : https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz
-Summary  : Outline and bitmap font editor
+Summary  : A PostScript font editor
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause FSFULLR GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: fontforge-bin = %{version}-%{release}
@@ -82,7 +82,6 @@ Requires: fontforge-lib = %{version}-%{release}
 Requires: fontforge-bin = %{version}-%{release}
 Requires: fontforge-data = %{version}-%{release}
 Provides: fontforge-devel = %{version}-%{release}
-Requires: fontforge = %{version}-%{release}
 Requires: fontforge = %{version}-%{release}
 
 %description dev
@@ -179,18 +178,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582924732
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1604079778
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --without-libuninameslist
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1582924732
+export SOURCE_DATE_EPOCH=1604079778
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp %{_builddir}/fontforge-20190801/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
