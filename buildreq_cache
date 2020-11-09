@@ -1,8 +1,6 @@
-20190801
-ipython
+20201107
+Sphinx
+giflib-dev
 libjpeg-turbo-dev
-pkgconfig(ice)
-pkgconfig(sm)
-potrace
-python3-dev
+ncurses-dev
 tiff-dev
