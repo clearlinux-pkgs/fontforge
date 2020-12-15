@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20201107
-Release  : 20
+Release  : 21
 URL      : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Summary  : A PostScript font editor
@@ -162,7 +162,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604948646
+export SOURCE_DATE_EPOCH=1608010436
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -175,7 +175,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604948646
+export SOURCE_DATE_EPOCH=1608010436
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp %{_builddir}/fontforge-20201107/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
