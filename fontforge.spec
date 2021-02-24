@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20201107
-Release  : 22
+Release  : 23
 URL      : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Summary  : A PostScript font editor
@@ -29,7 +29,7 @@ BuildRequires : giflib-dev
 BuildRequires : git
 BuildRequires : glibc-dev
 BuildRequires : libX11-dev
-BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libspiro-dev
 BuildRequires : libuninameslist
