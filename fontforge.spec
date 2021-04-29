@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20201107
-Release  : 24
+Release  : 25
 URL      : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Summary  : A PostScript font editor
@@ -166,10 +166,10 @@ export SOURCE_DATE_EPOCH=1608010436
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 %cmake .. -DENABLE_LIBUNINAMESLIST=OFF
 make  %{?_smp_mflags}
 popd
