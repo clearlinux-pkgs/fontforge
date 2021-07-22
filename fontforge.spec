@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20201107
-Release  : 27
+Release  : 28
 URL      : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Summary  : A PostScript font editor
