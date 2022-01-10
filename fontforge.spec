@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20201107
-Release  : 31
+Release  : 32
 URL      : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20201107/fontforge-20201107.tar.gz
 Summary  : A PostScript font editor
@@ -18,9 +18,6 @@ Requires: fontforge-locales = %{version}-%{release}
 Requires: fontforge-man = %{version}-%{release}
 Requires: fontforge-python = %{version}-%{release}
 Requires: fontforge-python3 = %{version}-%{release}
-Requires: Pillow
-BuildRequires : Pillow
-BuildRequires : Sphinx
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 BuildRequires : freetype-dev
@@ -34,7 +31,6 @@ BuildRequires : libjpeg-turbo-dev
 BuildRequires : libspiro-dev
 BuildRequires : libuninameslist
 BuildRequires : libxml2-dev
-BuildRequires : ncurses-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(cairo)
 BuildRequires : pkgconfig(freetype2)
@@ -49,6 +45,8 @@ BuildRequires : pkgconfig(libwoff2enc)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(pango)
 BuildRequires : pkgconfig(xrender)
+BuildRequires : pypi(pillow)
+BuildRequires : pypi-sphinx
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : tiff-dev
@@ -148,6 +146,7 @@ python components for the fontforge package.
 Summary: python3 components for the fontforge package.
 Group: Default
 Requires: python3-core
+Requires: pypi(pillow)
 
 %description python3
 python3 components for the fontforge package.
@@ -162,7 +161,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1608010436
+export SOURCE_DATE_EPOCH=1641855235
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -175,7 +174,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1608010436
+export SOURCE_DATE_EPOCH=1641855235
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
 cp %{_builddir}/fontforge-20201107/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -187,9 +186,9 @@ pushd clr-build
 popd
 %find_lang FontForge
 ## Remove excluded files
-rm -f %{buildroot}/usr/share/doc/fontforge/.buildinfo
-rm -f %{buildroot}/usr/share/doc/fontforge/.htaccess
-rm -f %{buildroot}/usr/share/doc/fontforge/.nojekyll
+rm -f %{buildroot}*/usr/share/doc/fontforge/.buildinfo
+rm -f %{buildroot}*/usr/share/doc/fontforge/.htaccess
+rm -f %{buildroot}*/usr/share/doc/fontforge/.nojekyll
 
 %files
 %defattr(-,root,root,-)
