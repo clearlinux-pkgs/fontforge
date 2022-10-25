@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20220308
-Release  : 36
+Release  : 37
 URL      : https://github.com/fontforge/fontforge/archive/20220308/fontforge-20220308.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20220308/fontforge-20220308.tar.gz
 Summary  : A PostScript font editor
@@ -160,7 +160,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646833862
+export SOURCE_DATE_EPOCH=1666721023
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -173,13 +173,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646833862
+export SOURCE_DATE_EPOCH=1666721023
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fontforge
-cp %{_builddir}/fontforge-20220308/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/fontforge-20220308/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/6e478823c3f8f96ffe2c3ae91ecddb2c0261c4b6
-cp %{_builddir}/fontforge-20220308/Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/8151e44930bd15f8056e01f399892c741b143f07
-cp %{_builddir}/fontforge-20220308/doc/sphinx/olddocs/old/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/9149b619bc88b11d076a9416f1f21bffef7da963
+cp %{_builddir}/fontforge-%{version}/COPYING.gplv3 %{buildroot}/usr/share/package-licenses/fontforge/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
+cp %{_builddir}/fontforge-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/fontforge/6e478823c3f8f96ffe2c3ae91ecddb2c0261c4b6 || :
+cp %{_builddir}/fontforge-%{version}/Packaging/debian/cp-src/copyright %{buildroot}/usr/share/package-licenses/fontforge/8151e44930bd15f8056e01f399892c741b143f07 || :
+cp %{_builddir}/fontforge-%{version}/doc/sphinx/olddocs/old/ja/license.html %{buildroot}/usr/share/package-licenses/fontforge/9149b619bc88b11d076a9416f1f21bffef7da963 || :
 pushd clr-build
 %make_install
 popd
