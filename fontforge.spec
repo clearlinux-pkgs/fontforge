@@ -4,7 +4,7 @@
 #
 Name     : fontforge
 Version  : 20220308
-Release  : 33
+Release  : 34
 URL      : https://github.com/fontforge/fontforge/archive/20220308/fontforge-20220308.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20220308/fontforge-20220308.tar.gz
 Summary  : A PostScript font editor
