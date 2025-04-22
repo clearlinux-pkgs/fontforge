@@ -7,7 +7,7 @@
 #
 Name     : fontforge
 Version  : 20230101
-Release  : 46
+Release  : 47
 URL      : https://github.com/fontforge/fontforge/archive/20230101/fontforge-20230101.tar.gz
 Source0  : https://github.com/fontforge/fontforge/archive/20230101/fontforge-20230101.tar.gz
 Summary  : Docs for FontForge, a PostScript font editor
